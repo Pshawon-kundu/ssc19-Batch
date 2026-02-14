@@ -9,25 +9,29 @@ interface PaymentSectionProps {
   onChange: (field: keyof RegistrationData, value: any) => void;
 }
 
+import bkashLogo from '../assets/payment/bkash.png';
+import nagadLogo from '../assets/payment/nagad.png';
+import rocketLogo from '../assets/payment/rocket.png';
+
 const paymentMethods = [
   {
     id: 'bkash',
     name: 'bKash',
-    icon: '📱',
+    icon: bkashLogo,
     color: 'from-pink-500 to-pink-600',
     number: config.paymentNumbers.bkash,
   },
   {
     id: 'nagad',
     name: 'Nagad',
-    icon: '💳',
+    icon: nagadLogo,
     color: 'from-orange-500 to-orange-600',
     number: config.paymentNumbers.nagad,
   },
   {
     id: 'rocket',
     name: 'Rocket',
-    icon: '🚀',
+    icon: rocketLogo,
     color: 'from-purple-500 to-purple-600',
     number: config.paymentNumbers.rocket,
   },
@@ -65,7 +69,9 @@ export function PaymentSection({ formData, errors, onChange }: PaymentSectionPro
                 : 'border-gray-200 hover:border-emerald-300'
                 }`}
             >
-              <div className="text-3xl mb-2">{method.icon}</div>
+              <div className="h-12 flex items-center justify-center mb-2">
+                <img src={method.icon} alt={method.name} className="h-full object-contain" />
+              </div>
               <div className="font-semibold text-gray-900">{method.name}</div>
             </button>
           ))}
@@ -79,9 +85,13 @@ export function PaymentSection({ formData, errors, onChange }: PaymentSectionPro
       {formData.paymentMethod && (
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-2xl">
-              {paymentMethods.find(m => m.id === formData.paymentMethod)?.icon}
-            </span>
+            <div className="h-8 w-12 flex items-center justify-center">
+              <img
+                src={paymentMethods.find(m => m.id === formData.paymentMethod)?.icon}
+                alt="Selected"
+                className="h-full object-contain"
+              />
+            </div>
             <h4 className="font-semibold text-gray-900">
               Send money to this {paymentMethods.find(m => m.id === formData.paymentMethod)?.name} number:
             </h4>
