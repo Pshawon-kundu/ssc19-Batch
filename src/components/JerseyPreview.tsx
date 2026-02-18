@@ -15,7 +15,7 @@ export function JerseyPreview() {
       
       <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-emerald-100 to-amber-100 mb-4">
         <ImageWithFallback
-          src="/1122.jpg/src"
+          src="src/1122.jpg"
           alt="SSC 2019 Jersey"
           className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
         />
