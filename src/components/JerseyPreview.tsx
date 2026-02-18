@@ -15,7 +15,7 @@ export function JerseyPreview() {
       
       <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-emerald-100 to-amber-100 mb-4">
         <ImageWithFallback
-          src="SSC_19_Ifter_Party/src/1122.jpg"
+          src="https://assets.adidas.com/images/w_600,f_auto,q_auto/b5aa77229eae4cf79d8545be09930b4f_9366/Argentina_26_Home_Messi_Kids_Jersey_White_KA8115_42_detail.jpg"
           alt="SSC 2019 Jersey"
           className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
         />
