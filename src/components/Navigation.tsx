@@ -35,10 +35,10 @@ export function Navigation() {
             onClick={(e) => scrollToSection(e, "#home")}
           >
             <div className="w-10 h-10 bg-gradient-to-br from-emerald-600 to-emerald-800 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">SSC</span>
+              <span className="text-white font-bold text-sm">P'19</span>
             </div>
             <div className="hidden sm:block">
-              <div className="font-bold text-gray-900">SSC 2019 Batch</div>
+              <div className="font-bold text-gray-900">PILOTIAN'19</div>
               <div className="text-xs text-emerald-600">Iftar Party</div>
             </div>
           </a>
