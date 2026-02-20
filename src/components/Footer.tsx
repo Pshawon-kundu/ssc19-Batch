@@ -1,13 +1,16 @@
-import { Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
-import { motion } from 'motion/react';
+import { Mail, Phone, MapPin, ArrowUp } from "lucide-react";
+import { motion } from "motion/react";
 
 export function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer id="contact" className="bg-gradient-to-br from-emerald-900 to-emerald-800 text-white py-12 relative">
+    <footer
+      id="contact"
+      className="bg-gradient-to-br from-emerald-900 to-emerald-800 text-white py-12 relative"
+    >
       {/* Back to Top Button */}
       <motion.button
         whileHover={{ scale: 1.15, y: -4 }}
@@ -37,7 +40,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-emerald-100 text-sm">
-              Join us for a memorable reunion this Ramadan. Let's celebrate together and strengthen our bonds.
+              Join us for a memorable reunion this Ramadan. Let's celebrate
+              together and strengthen our bonds.
             </p>
           </div>
 
@@ -68,13 +72,19 @@ export function Footer() {
             <div className="space-y-3 text-emerald-100 text-sm">
               <div className="flex items-center gap-2">
                 <Phone size={18} />
-                <a href="tel:+8801712345678" className="hover:text-white transition-colors">
+                <a
+                  href="tel:+8801712345678"
+                  className="hover:text-white transition-colors"
+                >
                   +880 1784915291
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={18} />
-                <a href="mailto:ssc2019@example.com" className="hover:text-white transition-colors">
+                <a
+                  href="mailto:ssc2019@example.com"
+                  className="hover:text-white transition-colors"
+                >
                   mushfikurr19@gmail.com
                 </a>
               </div>

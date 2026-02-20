@@ -189,7 +189,6 @@ export function Album({ onClose }: AlbumProps) {
             </div>
           </div>
         </motion.div>
-      </motion.div>
 
       {/* Full Screen Image Modal */}
       {selectedPhoto !== null && (
