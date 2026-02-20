@@ -41,8 +41,10 @@ export function Album({ onClose }: AlbumProps) {
   }, [selectedPhoto]);
 
   // Gallery slider navigation
-  const galleryNext = () => setGalleryIndex((i) => (i + 1) % ALBUM_PHOTOS.length);
-  const galleryPrev = () => setGalleryIndex((i) => (i === 0 ? ALBUM_PHOTOS.length - 1 : i - 1));
+  const galleryNext = () =>
+    setGalleryIndex((i) => (i + 1) % ALBUM_PHOTOS.length);
+  const galleryPrev = () =>
+    setGalleryIndex((i) => (i === 0 ? ALBUM_PHOTOS.length - 1 : i - 1));
 
   // Keyboard navigation
   useEffect(() => {
@@ -68,7 +70,6 @@ export function Album({ onClose }: AlbumProps) {
       className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 pt-24 pb-20"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* ── Back Button (always visible at top) ── */}
         <motion.button
           whileHover={{ scale: 1.05, x: -4 }}
@@ -90,8 +91,7 @@ export function Album({ onClose }: AlbumProps) {
             boxShadow: "0 4px 14px rgba(5,150,105,0.4)",
           }}
         >
-          <ChevronLeft size={20} />
-          ← Back to Home
+          <ChevronLeft size={20} />← Back to Home
         </motion.button>
 
         {/* ── Heading ── */}
@@ -102,7 +102,8 @@ export function Album({ onClose }: AlbumProps) {
           </h2>
         </div>
         <p className="text-gray-500 text-sm sm:text-base mb-10">
-          Use the <strong>&lt; &gt;</strong> arrows or keyboard keys to browse photos
+          Use the <strong>&lt; &gt;</strong> arrows or keyboard keys to browse
+          photos
         </p>
 
         {/* ── Main Slider ── */}
@@ -258,7 +259,10 @@ export function Album({ onClose }: AlbumProps) {
                 height: "60px",
                 borderRadius: "10px",
                 overflow: "hidden",
-                border: galleryIndex === idx ? "3px solid #059669" : "3px solid transparent",
+                border:
+                  galleryIndex === idx
+                    ? "3px solid #059669"
+                    : "3px solid transparent",
                 padding: 0,
                 cursor: "pointer",
                 opacity: galleryIndex === idx ? 1 : 0.6,
@@ -420,11 +424,22 @@ export function Album({ onClose }: AlbumProps) {
                 </motion.button>
 
                 <div style={{ textAlign: "center" }}>
-                  <p style={{ color: "#fff", fontWeight: 700, fontSize: "16px" }}>
-                    Photo {ALBUM_PHOTOS.findIndex((p) => p.id === selectedPhoto) + 1} of {ALBUM_PHOTOS.length}
+                  <p
+                    style={{ color: "#fff", fontWeight: 700, fontSize: "16px" }}
+                  >
+                    Photo{" "}
+                    {ALBUM_PHOTOS.findIndex((p) => p.id === selectedPhoto) + 1}{" "}
+                    of {ALBUM_PHOTOS.length}
                   </p>
                   {/* Thumbnail strip in lightbox */}
-                  <div style={{ display: "flex", gap: "8px", marginTop: "10px", justifyContent: "center" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "8px",
+                      marginTop: "10px",
+                      justifyContent: "center",
+                    }}
+                  >
                     {ALBUM_PHOTOS.map((photo) => (
                       <motion.button
                         key={photo.id}
@@ -436,7 +451,10 @@ export function Album({ onClose }: AlbumProps) {
                           height: "44px",
                           borderRadius: "8px",
                           overflow: "hidden",
-                          border: selectedPhoto === photo.id ? "2px solid #fff" : "2px solid rgba(255,255,255,0.25)",
+                          border:
+                            selectedPhoto === photo.id
+                              ? "2px solid #fff"
+                              : "2px solid rgba(255,255,255,0.25)",
                           padding: 0,
                           cursor: "pointer",
                           opacity: selectedPhoto === photo.id ? 1 : 0.6,
@@ -445,7 +463,11 @@ export function Album({ onClose }: AlbumProps) {
                         <img
                           src={photo.src}
                           alt={photo.alt}
-                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
                         />
                       </motion.button>
                     ))}
@@ -474,7 +496,14 @@ export function Album({ onClose }: AlbumProps) {
                 </motion.button>
               </div>
 
-              <p style={{ textAlign: "center", color: "rgba(255,255,255,0.4)", fontSize: "12px", marginTop: "12px" }}>
+              <p
+                style={{
+                  textAlign: "center",
+                  color: "rgba(255,255,255,0.4)",
+                  fontSize: "12px",
+                  marginTop: "12px",
+                }}
+              >
                 ← → arrow keys to navigate &nbsp;·&nbsp; Esc to close
               </p>
             </motion.div>

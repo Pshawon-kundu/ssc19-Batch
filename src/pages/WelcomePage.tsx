@@ -5,39 +5,51 @@ import { ArrowRight } from "lucide-react";
 
 /* ─── Emerald palette ─── */
 const C = {
-  bg:        "#022c22",
-  bgCard:    "rgba(6, 78, 59, 0.5)",
-  border:    "rgba(52, 211, 153, 0.2)",
-  glowTop:   "rgba(16, 185, 129, 0.18)",
-  glowBot:   "rgba(13, 148, 136, 0.14)",
-  white:     "#ffffff",
-  accent:    "#34d399",
-  label:     "#6ee7b7",
-  muted:     "rgba(255,255,255,0.5)",
-  divider:   "rgba(52, 211, 153, 0.15)",
-  btnBg:     "#34d399",
-  btnText:   "#022c22",
+  bg: "#022c22",
+  bgCard: "rgba(6, 78, 59, 0.5)",
+  border: "rgba(52, 211, 153, 0.2)",
+  glowTop: "rgba(16, 185, 129, 0.18)",
+  glowBot: "rgba(13, 148, 136, 0.14)",
+  white: "#ffffff",
+  accent: "#34d399",
+  label: "#6ee7b7",
+  muted: "rgba(255,255,255,0.5)",
+  divider: "rgba(52, 211, 153, 0.15)",
+  btnBg: "#34d399",
+  btnText: "#022c22",
 };
 
 /* ─── High-Five SVG ─── */
 function HighFiveScene() {
-  const leftArm  = useAnimation();
+  const leftArm = useAnimation();
   const rightArm = useAnimation();
-  const spark    = useAnimation();
-  const leftBody  = useAnimation();
+  const spark = useAnimation();
+  const leftBody = useAnimation();
   const rightBody = useAnimation();
 
   useEffect(() => {
     const run = async () => {
       // Walk in & lean
       await Promise.all([
-        leftBody.start({ x: 0, transition: { duration: 0.7, ease: "easeOut" } }),
-        rightBody.start({ x: 0, transition: { duration: 0.7, ease: "easeOut" } }),
+        leftBody.start({
+          x: 0,
+          transition: { duration: 0.7, ease: "easeOut" },
+        }),
+        rightBody.start({
+          x: 0,
+          transition: { duration: 0.7, ease: "easeOut" },
+        }),
       ]);
       // Raise arms to high-five
       await Promise.all([
-        leftArm.start({ rotate: -130, transition: { duration: 0.4, ease: "easeInOut" } }),
-        rightArm.start({ rotate: 130, transition: { duration: 0.4, ease: "easeInOut" } }),
+        leftArm.start({
+          rotate: -130,
+          transition: { duration: 0.4, ease: "easeInOut" },
+        }),
+        rightArm.start({
+          rotate: 130,
+          transition: { duration: 0.4, ease: "easeInOut" },
+        }),
       ]);
       // Flash spark
       await spark.start({
@@ -52,7 +64,12 @@ function HighFiveScene() {
       });
       rightBody.start({
         y: [0, -8, 0],
-        transition: { duration: 0.7, repeat: Infinity, ease: "easeInOut", delay: 0.15 },
+        transition: {
+          duration: 0.7,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.15,
+        },
       });
       // Arms stay up and sway slightly
       leftArm.start({
@@ -61,7 +78,12 @@ function HighFiveScene() {
       });
       rightArm.start({
         rotate: [130, 120, 130],
-        transition: { duration: 1.2, repeat: Infinity, ease: "easeInOut", delay: 0.1 },
+        transition: {
+          duration: 1.2,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.1,
+        },
       });
     };
     const t = setTimeout(run, 1200);
@@ -97,7 +119,10 @@ function HighFiveScene() {
         <line x1="50" y1="23" x2="50" y2="56" {...strokeProps} />
         {/* Raised arm (high-five side) */}
         <motion.line
-          x1="50" y1="32" x2="72" y2="20"
+          x1="50"
+          y1="32"
+          x2="72"
+          y2="20"
           {...strokeProps}
           animate={armCtrl}
           initial={{ rotate: 0 }}
@@ -139,9 +164,10 @@ function HighFiveScene() {
           {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
             <line
               key={deg}
-              x1="110" y1="12"
+              x1="110"
+              y1="12"
               x2={110 + 14 * Math.cos((deg * Math.PI) / 180)}
-              y2={12  + 14 * Math.sin((deg * Math.PI) / 180)}
+              y2={12 + 14 * Math.sin((deg * Math.PI) / 180)}
               stroke="#fbbf24"
               strokeWidth={2.5}
               strokeLinecap="round"
@@ -156,12 +182,19 @@ function HighFiveScene() {
 
 /* ─── Main page ─── */
 const containerV = {
-  hidden:  { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
 } as const;
 const slideUp = {
-  hidden:  { y: 26, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { type: "spring" as const, stiffness: 90, damping: 12 } },
+  hidden: { y: 26, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring" as const, stiffness: 90, damping: 12 },
+  },
 } as const;
 
 export function WelcomePage() {
@@ -184,9 +217,38 @@ export function WelcomePage() {
       }}
     >
       {/* Glows */}
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}>
-        <div style={{ position: "absolute", top: "-15%", left: "-10%", width: "55%", height: "55%", background: C.glowTop, borderRadius: "100%", filter: "blur(100px)" }} />
-        <div style={{ position: "absolute", bottom: "-15%", right: "-10%", width: "55%", height: "55%", background: C.glowBot, borderRadius: "100%", filter: "blur(100px)" }} />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: "-15%",
+            left: "-10%",
+            width: "55%",
+            height: "55%",
+            background: C.glowTop,
+            borderRadius: "100%",
+            filter: "blur(100px)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-15%",
+            right: "-10%",
+            width: "55%",
+            height: "55%",
+            background: C.glowBot,
+            borderRadius: "100%",
+            filter: "blur(100px)",
+          }}
+        />
       </div>
 
       <motion.div
@@ -213,7 +275,12 @@ export function WelcomePage() {
         {/* ── TITLE ── */}
         <motion.div
           variants={slideUp}
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.9rem" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "0.9rem",
+          }}
         >
           <h1
             style={{
@@ -243,10 +310,27 @@ export function WelcomePage() {
             }}
           />
 
-          <p style={{ color: C.label, fontSize: "clamp(0.62rem, 1.4vw, 0.85rem)", fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", margin: 0 }}>
+          <p
+            style={{
+              color: C.label,
+              fontSize: "clamp(0.62rem, 1.4vw, 0.85rem)",
+              fontWeight: 700,
+              letterSpacing: "0.28em",
+              textTransform: "uppercase",
+              margin: 0,
+            }}
+          >
             SSC Batch · Class of 2019
           </p>
-          <p style={{ color: C.muted, fontSize: "clamp(0.8rem, 1.7vw, 1rem)", fontStyle: "italic", fontWeight: 300, margin: 0 }}>
+          <p
+            style={{
+              color: C.muted,
+              fontSize: "clamp(0.8rem, 1.7vw, 1rem)",
+              fontStyle: "italic",
+              fontWeight: 300,
+              margin: 0,
+            }}
+          >
             Iftar Party Reunion
           </p>
         </motion.div>
@@ -266,13 +350,21 @@ export function WelcomePage() {
           }}
         >
           {/* Top glow line */}
-          <div style={{ height: "1px", background: `linear-gradient(90deg, transparent, ${C.accent}, transparent)`, opacity: 0.6 }} />
+          <div
+            style={{
+              height: "1px",
+              background: `linear-gradient(90deg, transparent, ${C.accent}, transparent)`,
+              opacity: 0.6,
+            }}
+          />
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+          <div
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}
+          >
             {[
-              { label: "Date",       value: "27th Ramadan" },
-              { label: "Time",       value: "Iftar Onwards" },
-              { label: "Batch Size", value: "120+ Members"  },
+              { label: "Date", value: "27th Ramadan" },
+              { label: "Time", value: "Iftar Onwards" },
+              { label: "Batch Size", value: "120+ Members" },
             ].map((item, idx) => (
               <div
                 key={item.label}
@@ -286,10 +378,25 @@ export function WelcomePage() {
                   gap: "0.4rem",
                 }}
               >
-                <span style={{ color: C.label, fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase" }}>
+                <span
+                  style={{
+                    color: C.label,
+                    fontSize: "0.62rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                  }}
+                >
                   {item.label}
                 </span>
-                <span style={{ color: C.white, fontSize: "clamp(1rem, 2.2vw, 1.3rem)", fontWeight: 700, letterSpacing: "0.02em" }}>
+                <span
+                  style={{
+                    color: C.white,
+                    fontSize: "clamp(1rem, 2.2vw, 1.3rem)",
+                    fontWeight: 700,
+                    letterSpacing: "0.02em",
+                  }}
+                >
                   {item.value}
                 </span>
               </div>
