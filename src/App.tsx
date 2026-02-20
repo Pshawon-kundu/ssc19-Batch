@@ -1,25 +1,33 @@
-import { useState, useEffect } from 'react';
-import { Navigation } from './components/Navigation';
-import { Hero } from './components/Hero';
-import { Packages } from './components/Packages';
-import { RegistrationForm } from './components/RegistrationForm';
-import { Footer } from './components/Footer';
-import { SuccessModal } from './components/SuccessModal';
-import { ErrorModal } from './components/ErrorModal';
-import { submitRegistration, fetchStats } from './api';
-import type { RegistrationData } from './api';
+import { useState, useEffect } from "react";
+import { Navigation } from "./components/Navigation";
+import { Hero } from "./components/Hero";
+import { Packages } from "./components/Packages";
+import { RegistrationForm } from "./components/RegistrationForm";
+import { Footer } from "./components/Footer";
+import { SuccessModal } from "./components/SuccessModal";
+import { ErrorModal } from "./components/ErrorModal";
+import { submitRegistration, fetchStats } from "./api";
+import type { RegistrationData } from "./api";
 
-export type PackageType = 'iftar-only' | 'iftar-jersey' | 'iftar-jersey-seheri' | 'jersey-only';
+export type PackageType =
+  | "iftar-only"
+  | "iftar-jersey"
+  | "iftar-jersey-seheri"
+  | "jersey-only";
 
 export default function App() {
-  const [selectedPackage, setSelectedPackage] = useState<PackageType | null>(null);
+  const [selectedPackage, setSelectedPackage] = useState<PackageType | null>(
+    null,
+  );
   const [totalRegistered, setTotalRegistered] = useState(0);
   const [totalMoney, setTotalMoney] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [lastRegistration, setLastRegistration] = useState<RegistrationData | undefined>(undefined);
+  const [lastRegistration, setLastRegistration] = useState<
+    RegistrationData | undefined
+  >(undefined);
   const [isLoadingStats, setIsLoadingStats] = useState(true);
 
   // Load initial stats and set up auto-refresh
@@ -40,7 +48,7 @@ export default function App() {
       setTotalRegistered(stats.total_students);
       setTotalMoney(stats.total_money);
     } catch (error) {
-      console.error('Failed to load stats:', error);
+      console.error("Failed to load stats:", error);
     } finally {
       setIsLoadingStats(false);
     }
@@ -55,8 +63,8 @@ export default function App() {
 
       if (response.success) {
         // Update local stats immediately for better UX
-        setTotalRegistered(prev => prev + 1);
-        setTotalMoney(prev => prev + data.amount);
+        setTotalRegistered((prev) => prev + 1);
+        setTotalMoney((prev) => prev + data.amount);
 
         // Show success modal
         setShowSuccess(true);
@@ -72,12 +80,15 @@ export default function App() {
           loadStats();
         }, 2000);
       } else {
-        throw new Error(response.error || response.message || 'Registration failed');
+        throw new Error(
+          response.error || response.message || "Registration failed",
+        );
       }
-
     } catch (error) {
-      console.error('Submission error:', error);
-      setErrorMessage(error instanceof Error ? error.message : 'Registration failed');
+      console.error("Submission error:", error);
+      setErrorMessage(
+        error instanceof Error ? error.message : "Registration failed",
+      );
       setShowError(true);
       // Re-throw so the form component can handle it (e.g. stop loading state)
       throw error;
@@ -87,9 +98,14 @@ export default function App() {
   };
 
   const scrollToRegistration = () => {
-    const element = document.getElementById('registration');
+    console.log("scrollToRegistration called");
+    const element = document.getElementById("registration");
+    console.log("Element found:", element);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
+      console.log("Scrolled to registration form");
+    } else {
+      console.warn("Registration element not found!");
     }
   };
 
