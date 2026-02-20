@@ -7,6 +7,7 @@ import { Album } from "./components/Album";
 import { Footer } from "./components/Footer";
 import { SuccessModal } from "./components/SuccessModal";
 import { ErrorModal } from "./components/ErrorModal";
+import { SplashScreen } from "./components/SplashScreen";
 import { submitRegistration, fetchStats } from "./api";
 import type { RegistrationData } from "./api";
 
@@ -17,6 +18,7 @@ export type PackageType =
   | "jersey-only";
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
   const [selectedPackage, setSelectedPackage] = useState<PackageType | null>(
     null,
   );
@@ -30,6 +32,15 @@ export default function App() {
     RegistrationData | undefined
   >(undefined);
   const [isLoadingStats, setIsLoadingStats] = useState(true);
+
+  // Hide splash screen after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Load initial stats and set up auto-refresh
   useEffect(() => {
@@ -112,6 +123,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-amber-50">
+      <SplashScreen isVisible={showSplash} />
+
       <Navigation />
 
       <Hero
