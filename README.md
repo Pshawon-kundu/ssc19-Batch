@@ -1,12 +1,14 @@
 # 🌙 PILOTIAN'19 — SSC Batch Iftar Party
 
-A modern event website for the **SSC 2019 Batch (Pilotian'19)** Iftar Party reunion, built with React + Vite + TypeScript.
+A modern, fully responsive event website for the **SSC 2019 Batch (Pilotian'19)** Iftar Party reunion — built with React + Vite + TypeScript and deployed on Vercel.
+
+> **Event Date:** 27th Ramadan 2026 · Iftar Onwards · 120+ Members
 
 ---
 
 ## 🚀 Live Demo
 
-> Deployed on **Vercel** — auto-deploys from `main` branch.
+> 🔗 Deployed on **Vercel** — auto-deploys on every push to `main` branch.
 
 ---
 
